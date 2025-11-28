@@ -4,44 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comment parler à une IA ? - Infographie Interactive</title>
-    <!-- Tailwind CSS pour le style -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons pour les icônes -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- Styles personnalisés pour les animations -->
     <style>
-        .fade-in {
-            animation: fadeIn 0.5s ease-in-out;
-        }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(5px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .pulse-slow {
-            animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        .animate-fade-in {
+            animation: fadeIn 0.3s ease-out forwards;
         }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: .5; }
+        .bike-transition {
+            transition: all 0.5s ease-in-out;
         }
     </style>
 </head>
-<body class="min-h-screen bg-slate-100 font-sans text-slate-900">
+<body class="bg-slate-50 font-sans text-slate-900">
 
     <!-- HEADER -->
-    <header class="bg-blue-600 text-white pt-12 pb-24 px-4 text-center relative overflow-hidden shadow-lg">
-        <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-            <!-- Icons background decoration -->
-            <i data-lucide="brain" class="absolute top-10 left-10 transform rotate-12 w-32 h-32"></i>
-            <i data-lucide="database" class="absolute bottom-10 right-10 transform -rotate-12 w-32 h-32"></i>
+    <header class="bg-white text-slate-900 pt-12 pb-24 px-4 text-center relative overflow-hidden shadow-sm border-b border-slate-200">
+        <div class="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
+            <!-- Background Icons -->
+            <i data-lucide="brain" class="absolute top-10 left-10 w-32 h-32 transform rotate-12 text-slate-900"></i>
+            <i data-lucide="database" class="absolute bottom-10 right-10 w-32 h-32 transform -rotate-12 text-slate-900"></i>
         </div>
         <div class="relative z-10 max-w-4xl mx-auto">
-            <h1 class="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight drop-shadow-sm text-white">Comment parler à une IA ?</h1>
-            <p class="text-xl md:text-2xl text-blue-50 max-w-3xl mx-auto font-light leading-relaxed">
-                Comprendre les <strong class="font-bold text-white">cadres cognitifs</strong> et les <strong class="font-bold text-white">machines à prédire</strong>.
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight text-slate-900">Comment parler à une IA ?</h1>
+            <p class="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto font-light leading-relaxed">
+                Comprendre les <strong class="font-bold text-slate-800">cadres cognitifs</strong> et les <strong class="font-bold text-slate-800">machines à prédire</strong>.
                 <br/>
-                <span class="text-base mt-4 block opacity-90 font-normal bg-blue-700/30 inline-block px-4 py-2 rounded-full border border-blue-400/30">
-                  (Expliqué simplement avec des vélos et des smoothies)
+                <span class="text-base mt-4 block font-normal bg-slate-100 inline-block px-5 py-2 rounded-full border border-slate-200 shadow-sm text-slate-500">
+                    (Expliqué simplement avec des vélos et des smoothies)
                 </span>
             </p>
         </div>
@@ -52,55 +45,55 @@
         <!-- SECTION 1: LE CERVEAU HUMAIN -->
         <section>
             <div class="flex items-center gap-3 mb-6 pl-2">
-                <div class="bg-purple-600 text-white p-2 rounded-lg shadow-md ring-2 ring-white/20">
+                <div class="bg-purple-600 text-white p-2 rounded-lg shadow-md">
                     <i data-lucide="camera" class="w-6 h-6"></i>
                 </div>
-                <h2 class="text-2xl font-bold text-white drop-shadow-md">1. Le Cerveau Humain & les "Filtres"</h2>
+                <h2 class="text-2xl font-bold text-slate-800">1. Le cerveau humain & les « filtres »</h2>
             </div>
             
             <!-- Info Card -->
-            <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-purple-500 mb-6 hover:shadow-xl transition-shadow duration-300">
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 border-l-4 border-l-purple-500 mb-6 hover:shadow-md transition-shadow duration-300">
                 <div class="flex items-center mb-4">
-                    <div class="p-3 rounded-full bg-purple-100 mr-4">
+                    <div class="p-3 rounded-full bg-purple-50 mr-4 border border-purple-100">
                         <i data-lucide="camera" class="w-6 h-6 text-purple-600"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-800">Le Cadre Cognitif (Frame)</h3>
+                    <h3 class="text-xl font-bold text-gray-900">Le cadre cognitif (frame)</h3>
                 </div>
-                <div class="text-gray-600 leading-relaxed">
+                <div class="text-gray-700 leading-relaxed">
                     Imagine que ton cerveau est un appareil photo avec des <strong>filtres automatiques</strong>. Avant même de réfléchir, le mot que tu entends choisit le filtre. C'est magique : le même objet change de valeur selon le mot utilisé.
                 </div>
             </div>
 
-            <!-- Bike Demo Interactive -->
-            <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
-                <h4 class="text-lg font-bold mb-4 text-center text-slate-800">Expérience 1 : Le Filtre Photo (Frame)</h4>
+            <!-- Bike Frame Demo -->
+            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm" id="bike-demo">
+                <h4 class="text-lg font-bold mb-4 text-center text-slate-800">Expérience 1 : Le filtre photo (frame)</h4>
                 <p class="text-center text-sm text-slate-600 mb-6">Choisis un mot pour vendre ce vélo et observe comment ton cerveau réagit.</p>
                 
                 <div class="flex justify-center space-x-4 mb-8">
-                    <button id="btn-occasion" class="px-4 py-2 rounded-full font-medium transition-all bg-slate-700 text-white shadow-lg scale-105">
+                    <button onclick="setBikeFrame('occasion')" id="btn-occasion" class="px-5 py-2 rounded-full font-bold transition-all border bg-slate-800 text-white border-slate-800 shadow-lg scale-105">
                         Mot : "D'occasion"
                     </button>
-                    <button id="btn-vintage" class="px-4 py-2 rounded-full font-medium transition-all bg-purple-100 text-purple-600 hover:bg-purple-200">
+                    <button onclick="setBikeFrame('vintage')" id="btn-vintage" class="px-5 py-2 rounded-full font-bold transition-all border bg-white text-purple-600 border-purple-200 hover:bg-purple-50">
                         Mot : "Vintage"
                     </button>
                 </div>
 
                 <div class="flex flex-col md:flex-row items-center justify-center gap-8">
-                    <!-- Image Mentale -->
-                    <div id="bike-container" class="relative w-48 h-48 rounded-full flex items-center justify-center transition-all duration-500 bg-gray-200">
-                        <i data-lucide="bike" id="bike-icon" class="w-20 h-20 transition-all duration-500 text-gray-500"></i>
-                        <i data-lucide="sparkles" id="bike-sparkles" class="absolute top-4 right-8 text-yellow-400 animate-pulse hidden w-6 h-6"></i>
+                    <!-- Image Container -->
+                    <div id="bike-container" class="relative w-48 h-48 rounded-full flex items-center justify-center transition-all duration-500 border-4 bg-slate-100 border-slate-200">
+                        <i data-lucide="bike" id="bike-icon" class="w-20 h-20 transition-all duration-500 text-slate-400"></i>
+                        <i data-lucide="sparkles" id="sparkles-icon" class="absolute top-4 right-8 text-yellow-500 animate-pulse hidden w-6 h-6"></i>
                     </div>
 
-                    <!-- Interprétation -->
+                    <!-- Interpretation -->
                     <div class="w-full md:w-1/2 space-y-3">
-                        <div class="p-4 bg-white rounded-lg shadow-sm border border-slate-100">
-                            <span class="text-xs font-bold text-slate-400 uppercase">Ce que le cerveau imagine :</span>
-                            <p id="bike-imagination" class="text-lg font-medium text-slate-800">Un vieux vélo usé, un peu rouillé...</p>
+                        <div class="p-4 bg-slate-50 rounded-lg border border-slate-200">
+                            <span class="text-xs font-bold text-slate-500 uppercase tracking-wide">Ce que le cerveau imagine</span>
+                            <p id="bike-imagination" class="text-lg font-semibold text-slate-900 mt-1">Un vieux vélo usé, un peu rouillé...</p>
                         </div>
-                        <div class="p-4 bg-white rounded-lg shadow-sm border border-slate-100">
-                            <span class="text-xs font-bold text-slate-400 uppercase">Valeur perçue :</span>
-                            <p id="bike-value" class="text-xl font-bold text-slate-600">Environ 30 €</p>
+                        <div class="p-4 bg-slate-50 rounded-lg border border-slate-200">
+                            <span class="text-xs font-bold text-slate-500 uppercase tracking-wide">Valeur perçue</span>
+                            <p id="bike-price" class="text-xl font-bold mt-1 text-slate-600">Environ 30 €</p>
                         </div>
                     </div>
                 </div>
@@ -117,65 +110,55 @@
             </div>
 
             <div class="grid md:grid-cols-2 gap-6">
-                <!-- Card Supermarché -->
-                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-blue-500 mb-6 hover:shadow-xl transition-shadow duration-300">
+                <!-- Supermarché -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 border-l-4 border-l-blue-500 hover:shadow-md transition-shadow duration-300">
                     <div class="flex items-center mb-4">
-                        <div class="p-3 rounded-full bg-blue-100 mr-4">
+                        <div class="p-3 rounded-full bg-blue-50 mr-4 border border-blue-100">
                             <i data-lucide="shopping-cart" class="w-6 h-6 text-blue-600"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-gray-800">Le Supermarché (Embeddings)</h3>
+                        <h3 class="text-xl font-bold text-gray-900">Le supermarché (embeddings)</h3>
                     </div>
-                    <div class="text-gray-600 leading-relaxed">
+                    <div class="text-gray-700 leading-relaxed">
                         L'IA ne connaît pas le sens des mots. Elle les range dans un immense supermarché (une carte mathématique). <br/><br/>
                         <strong>Concept clé :</strong> Les mots de sens proche ("Chat", "Chien") sont rangés dans le même rayon.
                         
-                        <!-- Embeddings Map -->
-                        <div class="mt-4 relative h-64 bg-slate-900 rounded-xl overflow-hidden border border-slate-700 shadow-inner">
+                        <!-- Map Visual -->
+                        <div class="mt-4 relative h-64 bg-slate-900 rounded-xl overflow-hidden mb-4 border border-slate-700 shadow-inner">
                             <div class="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900 via-slate-900 to-black"></div>
-                            <div class="absolute top-4 left-4 text-xs text-white bg-blue-600/80 px-3 py-1 rounded-full font-bold shadow-sm">Le "Supermarché" (Espace Latent)</div>
+                            <div class="absolute top-4 left-4 text-xs text-white bg-white/10 backdrop-blur-sm border border-white/20 px-3 py-1 rounded-full font-bold shadow-sm">Le « supermarché » (espace latent)</div>
                             
-                            <!-- Cluster Nourriture -->
+                            <!-- Clusters -->
                             <div class="absolute top-10 left-10 group cursor-pointer">
                                 <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse shadow-[0_0_10px_rgba(74,222,128,0.5)]"></div>
-                                <span class="text-xs text-green-100 font-medium ml-2 group-hover:text-white transition-colors bg-black/40 px-1 rounded">Pomme</span>
+                                <span class="text-xs text-white font-bold ml-2 bg-black/60 px-2 py-0.5 rounded-full border border-green-500/30">Pomme</span>
                             </div>
                             <div class="absolute top-16 left-20 group cursor-pointer">
-                                <div class="w-2 h-2 bg-green-500 rounded-full shadow-[0_0_8px_rgba(34,197,94,0.5)]"></div>
-                                <span class="text-xs text-green-200 font-medium ml-2 group-hover:text-white transition-colors bg-black/40 px-1 rounded">Tarte</span>
+                                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                <span class="text-xs text-green-100 ml-2 group-hover:text-white transition-colors">Tarte</span>
                             </div>
 
-                            <!-- Cluster Animaux -->
                             <div class="absolute bottom-10 right-10 group cursor-pointer">
                                 <div class="w-3 h-3 bg-orange-400 rounded-full animate-pulse shadow-[0_0_10px_rgba(251,146,60,0.5)]"></div>
-                                <span class="text-xs text-orange-100 font-medium ml-2 group-hover:text-white transition-colors bg-black/40 px-1 rounded">Chat</span>
+                                <span class="text-xs text-white font-bold ml-2 bg-black/60 px-2 py-0.5 rounded-full border border-orange-500/30">Chat</span>
                             </div>
-                            <div class="absolute bottom-20 right-24 group cursor-pointer">
-                                <div class="w-2 h-2 bg-orange-500 rounded-full shadow-[0_0_8px_rgba(249,115,22,0.5)]"></div>
-                                <span class="text-xs text-orange-200 font-medium ml-2 group-hover:text-white transition-colors bg-black/40 px-1 rounded">Chien</span>
-                            </div>
-
-                            <!-- Cluster Royauté -->
+                            
                             <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 group cursor-pointer">
                                 <div class="w-3 h-3 bg-purple-400 rounded-full animate-pulse shadow-[0_0_10px_rgba(192,132,252,0.5)]"></div>
-                                <span class="text-xs text-purple-100 font-medium ml-2 group-hover:text-white transition-colors bg-black/40 px-1 rounded">Roi</span>
-                            </div>
-                            <div class="absolute top-1/2 left-1/2 transform translate-x-4 -translate-y-8 group cursor-pointer">
-                                <div class="w-2 h-2 bg-purple-500 rounded-full shadow-[0_0_8px_rgba(168,85,247,0.5)]"></div>
-                                <span class="text-xs text-purple-200 font-medium ml-2 group-hover:text-white transition-colors bg-black/40 px-1 rounded">Reine</span>
+                                <span class="text-xs text-white font-bold ml-2 bg-black/60 px-2 py-0.5 rounded-full border border-purple-500/30">Roi</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Card Smoothie -->
-                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-orange-500 mb-6 hover:shadow-xl transition-shadow duration-300">
+                <!-- Smoothie -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 border-l-4 border-l-orange-500 hover:shadow-md transition-shadow duration-300">
                     <div class="flex items-center mb-4">
-                        <div class="p-3 rounded-full bg-orange-100 mr-4">
+                        <div class="p-3 rounded-full bg-orange-50 mr-4 border border-orange-100">
                             <i data-lucide="blend" class="w-6 h-6 text-orange-600"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-gray-800">Le Smoothie (Compression)</h3>
+                        <h3 class="text-xl font-bold text-gray-900">Le smoothie (compression)</h3>
                     </div>
-                    <div class="text-gray-600 leading-relaxed">
+                    <div class="text-gray-700 leading-relaxed">
                         L'IA n'est pas une bibliothèque où l'on range des livres intacts. C'est un <strong>blender</strong>. <br/><br/>
                         On a mixé tout Internet. On ne peut plus retrouver la page exacte, mais on a le "goût" (la connaissance) de tout ce qui a été lu.
                         <div class="bg-orange-50 border border-orange-200 p-4 mt-4 rounded-lg flex items-center justify-center text-orange-800 font-bold shadow-sm">
@@ -186,42 +169,51 @@
             </div>
 
             <!-- Attention Mechanism -->
-            <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-indigo-500 mb-6 hover:shadow-xl transition-shadow duration-300">
+            <div class="bg-white p-6 rounded-xl border border-indigo-100 shadow-sm mt-6">
                 <div class="flex items-center mb-4">
-                    <div class="p-3 rounded-full bg-indigo-100 mr-4">
+                    <div class="p-3 rounded-full bg-indigo-50 mr-4 border border-indigo-100">
                         <i data-lucide="search" class="w-6 h-6 text-indigo-600"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-800">Les Détectives (L'Attention)</h3>
+                    <h3 class="text-xl font-bold text-gray-900">Les détectives (l'attention)</h3>
                 </div>
-                <div class="text-gray-600 leading-relaxed">
-                    L'IA utilise des "détectives" pour comprendre le sens d'un mot selon ses voisins. C'est ce qu'on appelle le <strong>Mécanisme d'Attention</strong>.
+                
+                <p class="text-center text-sm text-slate-600 mb-6 font-medium">Passe ta souris sur le mot <strong class="bg-yellow-200 px-1 rounded">avocat</strong> ci-dessous :</p>
+                
+                <div class="flex flex-wrap justify-center gap-3 text-xl md:text-2xl font-serif" id="sentence-container">
+                    <span class="word-neutral px-3 py-1.5 rounded border bg-slate-50 border-slate-200">L'</span>
                     
-                    <div class="bg-indigo-50 p-6 rounded-xl border border-indigo-200 mt-4">
-                        <h4 class="text-lg font-bold mb-2 text-center text-indigo-900">Le Mécanisme d'Attention (Les Détectives)</h4>
-                        <p class="text-center text-sm text-indigo-700 mb-6 font-medium">Passe ta souris sur le mot <strong>"avocat"</strong> pour voir comment l'IA comprend son sens grâce au contexte.</p>
-                        
-                        <div class="flex flex-wrap justify-center gap-3 text-xl md:text-2xl font-serif" id="words-container">
-                            <!-- Words generated by JS for cleaner HTML, but structured here for clarity -->
-                            <div class="word-box px-3 py-1.5 rounded transition-all duration-300 cursor-default shadow-sm border bg-white text-slate-700 border-slate-200">L'</div>
-                            <div id="word-avocat" class="word-box px-3 py-1.5 rounded transition-all duration-300 shadow-sm border bg-white text-slate-700 border-slate-200 cursor-pointer hover:bg-yellow-300 hover:text-yellow-900 hover:border-yellow-400 hover:ring-2 hover:ring-yellow-500 hover:scale-105 hover:font-bold">avocat</div>
-                            <div class="word-box px-3 py-1.5 rounded transition-all duration-300 cursor-default shadow-sm border bg-white text-slate-700 border-slate-200">a</div>
-                            <div class="word-box px-3 py-1.5 rounded transition-all duration-300 cursor-default shadow-sm border bg-white text-slate-700 border-slate-200">brillamment</div>
-                            <div id="word-plaide" class="word-box px-3 py-1.5 rounded transition-all duration-300 cursor-default shadow-sm border bg-white text-slate-700 border-slate-200 relative">plaidé</div>
-                            <div class="word-box px-3 py-1.5 rounded transition-all duration-300 cursor-default shadow-sm border bg-white text-slate-700 border-slate-200">pour</div>
-                            <div class="word-box px-3 py-1.5 rounded transition-all duration-300 cursor-default shadow-sm border bg-white text-slate-700 border-slate-200">son</div>
-                            <div id="word-client" class="word-box px-3 py-1.5 rounded transition-all duration-300 cursor-default shadow-sm border bg-white text-slate-700 border-slate-200 relative">client</div>
-                            <div class="word-box px-3 py-1.5 rounded transition-all duration-300 cursor-default shadow-sm border bg-white text-slate-700 border-slate-200">.</div>
-                        </div>
-                        
-                        <div class="mt-6 text-center h-12 flex items-center justify-center">
-                            <div id="attention-explanation" class="hidden bg-white px-6 py-2 rounded-full shadow-md border border-indigo-100 fade-in">
-                                <p class="text-indigo-800 font-bold flex items-center gap-2">
-                                    <span class="text-2xl">👨‍⚖️</span> L'IA détecte "plaidé" et "client" ➔ C'est un juriste, pas un fruit !
-                                </p>
-                            </div>
-                            <p id="attention-placeholder" class="text-indigo-400 text-sm italic">Survole le mot "avocat" pour activer l'attention...</p>
-                        </div>
+                    <!-- Trigger Word -->
+                    <span id="word-avocat" 
+                          class="px-3 py-1.5 rounded border bg-yellow-300 text-yellow-950 border-yellow-400 cursor-pointer font-bold ring-2 ring-yellow-500 shadow-md transform hover:scale-105 transition-all">
+                        avocat
+                    </span>
+                    
+                    <span class="word-neutral px-3 py-1.5 rounded border bg-slate-50 border-slate-200">a</span>
+                    <span class="word-neutral px-3 py-1.5 rounded border bg-slate-50 border-slate-200">brillamment</span>
+                    
+                    <!-- Target 1 -->
+                    <span id="word-plaide" class="word-target px-3 py-1.5 rounded border bg-slate-50 border-slate-200 transition-all duration-300 relative">
+                        plaidé
+                    </span>
+                    
+                    <span class="word-neutral px-3 py-1.5 rounded border bg-slate-50 border-slate-200">pour</span>
+                    <span class="word-neutral px-3 py-1.5 rounded border bg-slate-50 border-slate-200">son</span>
+                    
+                    <!-- Target 2 -->
+                    <span id="word-client" class="word-target px-3 py-1.5 rounded border bg-slate-50 border-slate-200 transition-all duration-300 relative">
+                        client
+                    </span>
+                    
+                    <span class="word-neutral px-3 py-1.5 rounded border bg-slate-50 border-slate-200">.</span>
+                </div>
+                
+                <div class="mt-8 text-center h-16 flex items-center justify-center">
+                    <div id="attention-feedback" class="hidden bg-indigo-50 px-6 py-3 rounded-full shadow-sm border border-indigo-100 animate-fade-in">
+                        <p class="text-indigo-900 font-bold flex items-center gap-2">
+                            <span class="text-2xl">👨‍⚖️</span> L'IA détecte "plaidé" et "client" ➔ C'est un juriste, pas un fruit !
+                        </p>
                     </div>
+                    <p id="attention-hint" class="text-slate-400 text-sm italic">Survole le mot en jaune pour activer l'attention...</p>
                 </div>
             </div>
         </section>
@@ -235,30 +227,30 @@
                 <h2 class="text-2xl font-bold text-slate-800">3. Piloter la machine</h2>
             </div>
 
-            <!-- Info Card Prompt -->
-            <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-green-500 mb-6 hover:shadow-xl transition-shadow duration-300">
+            <!-- Prompt Card -->
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 border-l-4 border-l-green-500 mb-6">
                 <div class="flex items-center mb-4">
-                    <div class="p-3 rounded-full bg-green-100 mr-4">
+                    <div class="p-3 rounded-full bg-green-50 mr-4 border border-green-100">
                         <i data-lucide="microscope" class="w-6 h-6 text-green-600"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-800">Le Prompt comme Gouvernail</h3>
+                    <h3 class="text-xl font-bold text-gray-900">Le prompt comme gouvernail</h3>
                 </div>
-                <div class="text-gray-600 leading-relaxed">
-                    Puisque l'IA fonctionne par association (comme le supermarché), tes mots agissent comme une <strong>lampe de poche</strong> dans le noir. Si tu éclaires le mauvais rayon, l'IA sortira les mauvais mots.
+                <div class="text-gray-700 leading-relaxed">
+                    Puisque l'IA fonctionne par association, tes mots agissent comme une <strong>lampe de poche</strong> dans le noir. Si tu éclaires le mauvais rayon, l'IA sortira les mauvais mots.
                 </div>
             </div>
 
-            <!-- Prompt Simulator -->
-            <div class="bg-slate-800 text-white p-6 rounded-xl shadow-2xl border border-slate-700">
+            <!-- Simulator -->
+            <div class="bg-white p-6 rounded-xl shadow-lg border border-slate-200">
                 <div class="flex flex-col sm:flex-row items-center justify-between mb-6 gap-4">
-                    <h4 class="text-xl font-bold flex items-center gap-2 text-white">
-                        <i data-lucide="zap" class="text-yellow-400 fill-yellow-400 w-6 h-6"></i> Simulateur de Prompt
+                    <h4 class="text-xl font-bold flex items-center gap-2 text-slate-800">
+                        <i data-lucide="zap" class="text-yellow-500 fill-yellow-500 w-5 h-5"></i> Simulateur de prompt
                     </h4>
-                    <div class="flex bg-slate-900 rounded-lg p-1 border border-slate-600">
-                        <button id="btn-weak" class="px-4 py-2 rounded-md text-sm transition-all font-medium bg-red-500 text-white shadow-md">
+                    <div class="flex bg-slate-100 rounded-lg p-1 border border-slate-200">
+                        <button onclick="setPromptMode('weak')" id="btn-weak" class="px-4 py-2 rounded-md text-sm transition-all font-medium bg-red-500 text-white shadow-md">
                             Faible
                         </button>
-                        <button id="btn-strong" class="px-4 py-2 rounded-md text-sm transition-all font-medium text-slate-400 hover:text-white hover:bg-slate-800">
+                        <button onclick="setPromptMode('strong')" id="btn-strong" class="px-4 py-2 rounded-md text-sm transition-all font-medium text-slate-500 hover:text-slate-900 hover:bg-slate-200">
                             Fort (Cadré)
                         </button>
                     </div>
@@ -266,32 +258,36 @@
 
                 <div class="grid md:grid-cols-2 gap-6">
                     <div class="space-y-4">
-                        <div class="bg-slate-900 p-5 rounded-lg border border-slate-600 shadow-inner">
-                            <span class="text-xs uppercase tracking-wider text-slate-400 font-bold mb-2 block flex items-center gap-2">
-                                <span class="w-2 h-2 rounded-full bg-blue-500"></span> Ton Prompt (La commande)
+                        <div class="bg-slate-50 p-5 rounded-lg border border-slate-200 shadow-inner">
+                            <span class="text-xs uppercase tracking-wider text-slate-500 font-bold mb-2 block flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-blue-500"></span> Ton prompt (la commande)
                             </span>
-                            <p id="prompt-text" class="font-mono text-lg text-blue-100">
+                            <p id="prompt-text" class="font-mono text-lg text-slate-800 font-medium">
                                 Agis comme un coach sportif.
                             </p>
                         </div>
                         
-                        <div class="flex items-center gap-3 text-sm text-slate-300 bg-slate-700/50 p-3 rounded-lg border border-slate-600/50">
-                            <i data-lucide="arrow-right" class="text-slate-400 w-4 h-4"></i>
-                            <span id="prompt-analysis">Active un "rôle" flou. Lampe de poche trop large.</span>
+                        <div class="flex items-center gap-3 text-sm text-slate-600 bg-white p-3 rounded-lg border border-slate-100">
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-slate-400"></i>
+                            <span id="prompt-explanation">Active un "rôle" flou. Lampe de poche trop large.</span>
                         </div>
                     </div>
 
-                    <div id="response-container" class="p-5 rounded-lg border-l-4 transition-all duration-500 shadow-md bg-slate-100 text-slate-800 border-red-500">
-                        <span class="text-xs uppercase tracking-wider font-bold mb-3 block opacity-70 flex items-center gap-2">
-                             <span id="response-dot" class="w-2 h-2 rounded-full bg-red-500"></span> Réponse de l'IA
+                    <div id="response-box" class="p-5 rounded-lg border-l-4 transition-all duration-500 shadow-sm bg-red-50 text-red-900 border-red-500">
+                        <span class="text-xs uppercase tracking-wider font-bold mb-3 block opacity-80 flex items-center gap-2">
+                            <span id="response-dot" class="w-2 h-2 rounded-full bg-red-500"></span> Réponse de l'IA
                         </span>
-                        <div id="response-content">
-                            <p class="italic text-lg">"Allez champion ! On lâche rien ! Fais 10 pompes ! Le sport c'est la santé !" <br/><br/><span class="text-xs bg-red-100 text-red-700 px-2 py-1 rounded font-bold border border-red-200">Observation: Cliché et générique.</span></p>
-                        </div>
+                        <p id="response-text" class="italic text-lg text-slate-800">
+                            "Allez champion ! On lâche rien ! Fais 10 pompes ! Le sport c'est la santé !"
+                        </p>
+                        <span id="response-badge" class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded font-bold border border-red-200 inline-block mt-4">
+                            Observation: Cliché et générique.
+                        </span>
                     </div>
                 </div>
             </div>
 
+            <!-- Warning -->
             <div class="mt-8 bg-yellow-50 border-l-4 border-yellow-400 p-5 rounded-r-lg flex gap-4 shadow-sm">
                 <i data-lucide="alert-circle" class="text-yellow-600 flex-shrink-0 w-6 h-6"></i>
                 <div>
@@ -308,174 +304,156 @@
     <!-- FOOTER -->
     <footer class="bg-slate-800 text-slate-300 py-12 border-t border-slate-700 mt-12">
         <div class="max-w-4xl mx-auto px-4 text-center space-y-6">
-            
             <div class="flex flex-col items-center justify-center space-y-2">
-                <p class="font-semibold text-slate-200 text-lg">CC BY SA Rochane Kherbouche</p>
-                <p class="text-sm opacity-70 text-slate-400">Infographie pédagogique interactive</p>
+                <p class="font-semibold text-white text-lg">CC BY SA Rochane Kherbouche</p>
+                <p class="text-sm opacity-70">Infographie pédagogique interactive</p>
             </div>
-
-            <div class="w-16 h-1 bg-slate-600 mx-auto rounded-full"></div>
-
-            <a 
-                href="https://media.licdn.com/dms/document/media/v2/D561FAQGEfmWXga2C0g/feedshare-document-pdf-analyzed/B56ZrDoF_eG4AY-/0/1764218661974?e=1765411200&v=beta&t=82rtMuAYtuik7F3UEGHbekmaCKkX3QwJYHJaHeauu1A" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 text-blue-300 hover:text-white transition-colors hover:underline"
-            >
+            <div class="w-16 h-1 bg-slate-600 mx-auto rounded-full opacity-30"></div>
+            <a href="https://media.licdn.com/dms/document/media/v2/D561FAQGEfmWXga2C0g/feedshare-document-pdf-analyzed/B56ZrDoF_eG4AY-/0/1764218661974?e=1765411200&v=beta&t=82rtMuAYtuik7F3UEGHbekmaCKkX3QwJYHJaHeauu1A" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-blue-300 hover:text-white transition-colors hover:underline">
                 <span>Inspiré de cette ressource</span>
                 <i data-lucide="external-link" class="w-4 h-4"></i>
             </a>
-            
-            <p class="text-xs text-slate-400 mt-8 font-light">
-                Basé sur les travaux de George Lakoff (Linguistique cognitive) et l'architecture Transformer.
-            </p>
+            <p class="text-xs text-slate-500 mt-8">Basé sur les travaux de George Lakoff (Linguistique cognitive) et l'architecture Transformer.</p>
         </div>
     </footer>
 
-    <!-- INTERACTIVITY SCRIPT -->
+    <!-- JAVASCRIPT LOGIC -->
     <script>
-        // Initialize Lucide icons
+        // Init Icons
         lucide.createIcons();
 
-        // --- 1. BIKE FRAME DEMO ---
-        const btnOccasion = document.getElementById('btn-occasion');
-        const btnVintage = document.getElementById('btn-vintage');
-        const bikeContainer = document.getElementById('bike-container');
-        const bikeIcon = document.getElementById('bike-icon');
-        const bikeSparkles = document.getElementById('bike-sparkles');
-        const bikeImagination = document.getElementById('bike-imagination');
-        const bikeValue = document.getElementById('bike-value');
-
+        // --- EXPERIMENT 1: BIKE FRAME ---
         function setBikeFrame(type) {
+            const btnOccasion = document.getElementById('btn-occasion');
+            const btnVintage = document.getElementById('btn-vintage');
+            const container = document.getElementById('bike-container');
+            const icon = document.getElementById('bike-icon');
+            const sparkles = document.getElementById('sparkles-icon');
+            const textImagination = document.getElementById('bike-imagination');
+            const textPrice = document.getElementById('bike-price');
+
             if (type === 'occasion') {
-                // Styles Buttons
-                btnOccasion.className = "px-4 py-2 rounded-full font-medium transition-all bg-slate-700 text-white shadow-lg scale-105";
-                btnVintage.className = "px-4 py-2 rounded-full font-medium transition-all bg-purple-100 text-purple-600 hover:bg-purple-200";
+                // Button Styles
+                btnOccasion.className = "px-5 py-2 rounded-full font-bold transition-all border bg-slate-800 text-white border-slate-800 shadow-lg scale-105";
+                btnVintage.className = "px-5 py-2 rounded-full font-bold transition-all border bg-white text-purple-600 border-purple-200 hover:bg-purple-50";
                 
                 // Visuals
-                bikeContainer.className = "relative w-48 h-48 rounded-full flex items-center justify-center transition-all duration-500 bg-gray-200";
-                bikeIcon.className = "w-20 h-20 transition-all duration-500 text-gray-500";
-                bikeSparkles.classList.add('hidden');
-                
+                container.className = "relative w-48 h-48 rounded-full flex items-center justify-center transition-all duration-500 border-4 bg-slate-100 border-slate-200";
+                icon.className = "w-20 h-20 transition-all duration-500 text-slate-400";
+                sparkles.classList.add('hidden');
+
                 // Text
-                bikeImagination.textContent = "Un vieux vélo usé, un peu rouillé...";
-                bikeValue.textContent = "Environ 30 €";
-                bikeValue.className = "text-xl font-bold text-slate-600";
+                textImagination.textContent = "Un vieux vélo usé, un peu rouillé...";
+                textPrice.textContent = "Environ 30 €";
+                textPrice.className = "text-xl font-bold mt-1 text-slate-600";
             } else {
-                // Styles Buttons
-                btnOccasion.className = "px-4 py-2 rounded-full font-medium transition-all bg-gray-200 text-gray-600 hover:bg-gray-300";
-                btnVintage.className = "px-4 py-2 rounded-full font-medium transition-all bg-purple-600 text-white shadow-lg scale-105";
+                // Button Styles
+                btnOccasion.className = "px-5 py-2 rounded-full font-bold transition-all border bg-white text-slate-600 border-slate-300 hover:bg-slate-50";
+                btnVintage.className = "px-5 py-2 rounded-full font-bold transition-all border bg-purple-600 text-white border-purple-600 shadow-lg scale-105";
                 
                 // Visuals
-                bikeContainer.className = "relative w-48 h-48 rounded-full flex items-center justify-center transition-all duration-500 bg-purple-100";
-                bikeIcon.className = "w-20 h-20 transition-all duration-500 text-purple-600";
-                bikeSparkles.classList.remove('hidden');
-                
+                container.className = "relative w-48 h-48 rounded-full flex items-center justify-center transition-all duration-500 border-4 bg-purple-50 border-purple-200";
+                icon.className = "w-20 h-20 transition-all duration-500 text-purple-600";
+                sparkles.classList.remove('hidden');
+
                 // Text
-                bikeImagination.textContent = "Un vélo de collection, stylé et rare !";
-                bikeValue.textContent = "Environ 150 €";
-                bikeValue.className = "text-xl font-bold text-green-600";
+                textImagination.textContent = "Un vélo de collection, stylé et rare !";
+                textPrice.textContent = "Environ 150 €";
+                textPrice.className = "text-xl font-bold mt-1 text-green-600";
             }
         }
 
-        btnOccasion.addEventListener('click', () => setBikeFrame('occasion'));
-        btnVintage.addEventListener('click', () => setBikeFrame('vintage'));
+        // --- EXPERIMENT 2: ATTENTION MECHANISM ---
+        const avocatWord = document.getElementById('word-avocat');
+        const targetWords = document.querySelectorAll('.word-target');
+        const feedback = document.getElementById('attention-feedback');
+        const hint = document.getElementById('attention-hint');
 
-
-        // --- 2. ATTENTION MECHANISM ---
-        const wordAvocat = document.getElementById('word-avocat');
-        const wordPlaide = document.getElementById('word-plaide');
-        const wordClient = document.getElementById('word-client');
-        const attentionExplanation = document.getElementById('attention-explanation');
-        const attentionPlaceholder = document.getElementById('attention-placeholder');
-
-        wordAvocat.addEventListener('mouseenter', () => {
-            // Highlight connections
-            const highlightClass = "bg-indigo-600 text-white border-indigo-700 font-bold scale-110 shadow-lg z-10";
-            const baseClass = "word-box px-3 py-1.5 rounded transition-all duration-300 cursor-default shadow-sm border bg-white text-slate-700 border-slate-200 relative";
-            
-            // Apply highlight
-            wordPlaide.className = highlightClass + " relative";
-            wordClient.className = highlightClass + " relative";
-
-            // Add badges
-            [wordPlaide, wordClient].forEach(el => {
+        avocatWord.addEventListener('mouseenter', () => {
+            // Highlight targets
+            targetWords.forEach(el => {
+                el.classList.remove('bg-slate-50', 'border-slate-200');
+                el.classList.add('bg-indigo-600', 'text-white', 'border-indigo-700', 'font-bold', 'scale-110', 'shadow-lg', 'z-10');
+                
+                // Add badge
                 const badge = document.createElement('span');
-                badge.className = "absolute -top-8 left-1/2 transform -translate-x-1/2 text-xs bg-indigo-800 text-white px-3 py-1 rounded-full whitespace-nowrap shadow-md border border-indigo-400 fade-in";
+                badge.className = "absolute -top-9 left-1/2 transform -translate-x-1/2 text-xs bg-indigo-900 text-white px-3 py-1 rounded-full whitespace-nowrap shadow-md border border-indigo-500 font-sans attention-badge animate-fade-in";
                 badge.textContent = "Indice trouvé !";
-                badge.id = "badge-" + el.id;
                 el.appendChild(badge);
             });
 
-            // Show explanation
-            attentionExplanation.classList.remove('hidden');
-            attentionPlaceholder.classList.add('hidden');
+            // Show feedback
+            feedback.classList.remove('hidden');
+            hint.classList.add('hidden');
         });
 
-        wordAvocat.addEventListener('mouseleave', () => {
-            // Reset styles
-            const baseClass = "word-box px-3 py-1.5 rounded transition-all duration-300 cursor-default shadow-sm border bg-white text-slate-700 border-slate-200 relative";
-            wordPlaide.className = baseClass;
-            wordClient.className = baseClass;
+        avocatWord.addEventListener('mouseleave', () => {
+            // Reset targets
+            targetWords.forEach(el => {
+                el.classList.add('bg-slate-50', 'border-slate-200');
+                el.classList.remove('bg-indigo-600', 'text-white', 'border-indigo-700', 'font-bold', 'scale-110', 'shadow-lg', 'z-10');
+                
+                // Remove badges
+                const badge = el.querySelector('.attention-badge');
+                if(badge) badge.remove();
+            });
 
-            // Remove badges
-            const badgePlaide = document.getElementById('badge-word-plaide');
-            const badgeClient = document.getElementById('badge-word-client');
-            if(badgePlaide) badgePlaide.remove();
-            if(badgeClient) badgeClient.remove();
-
-            // Hide explanation
-            attentionExplanation.classList.add('hidden');
-            attentionPlaceholder.classList.remove('hidden');
+            // Hide feedback
+            feedback.classList.add('hidden');
+            hint.classList.add('hidden');
+            hint.classList.remove('hidden');
         });
 
-
-        // --- 3. PROMPT SIMULATOR ---
-        const btnWeak = document.getElementById('btn-weak');
-        const btnStrong = document.getElementById('btn-strong');
-        const promptText = document.getElementById('prompt-text');
-        const promptAnalysis = document.getElementById('prompt-analysis');
-        const responseContainer = document.getElementById('response-container');
-        const responseDot = document.getElementById('response-dot');
-        const responseContent = document.getElementById('response-content');
-
+        // --- EXPERIMENT 3: PROMPT SIMULATOR ---
         function setPromptMode(mode) {
+            const btnWeak = document.getElementById('btn-weak');
+            const btnStrong = document.getElementById('btn-strong');
+            
+            const promptText = document.getElementById('prompt-text');
+            const promptExp = document.getElementById('prompt-explanation');
+            
+            const responseBox = document.getElementById('response-box');
+            const responseDot = document.getElementById('response-dot');
+            const responseText = document.getElementById('response-text');
+            const responseBadge = document.getElementById('response-badge');
+
             if (mode === 'weak') {
                 // Buttons
                 btnWeak.className = "px-4 py-2 rounded-md text-sm transition-all font-medium bg-red-500 text-white shadow-md";
-                btnStrong.className = "px-4 py-2 rounded-md text-sm transition-all font-medium text-slate-400 hover:text-white hover:bg-slate-800";
-
+                btnStrong.className = "px-4 py-2 rounded-md text-sm transition-all font-medium text-slate-500 hover:text-slate-900 hover:bg-slate-200";
+                
                 // Content
                 promptText.textContent = "Agis comme un coach sportif.";
-                promptAnalysis.textContent = 'Active un "rôle" flou. Lampe de poche trop large.';
+                promptExp.textContent = 'Active un "rôle" flou. Lampe de poche trop large.';
                 
-                // Response Style
-                responseContainer.className = "p-5 rounded-lg border-l-4 transition-all duration-500 shadow-md bg-slate-100 text-slate-800 border-red-500";
+                // Response Box Style
+                responseBox.className = "p-5 rounded-lg border-l-4 transition-all duration-500 shadow-sm bg-red-50 text-red-900 border-red-500";
                 responseDot.className = "w-2 h-2 rounded-full bg-red-500";
                 
-                // Response Text
-                responseContent.innerHTML = '<p class="italic text-lg">"Allez champion ! On lâche rien ! Fais 10 pompes ! Le sport c\'est la santé !" <br/><br/><span class="text-xs bg-red-100 text-red-700 px-2 py-1 rounded font-bold border border-red-200">Observation: Cliché et générique.</span></p>';
+                // Response Content
+                responseText.textContent = '"Allez champion ! On lâche rien ! Fais 10 pompes ! Le sport c\'est la santé !"';
+                responseBadge.textContent = "Observation: Cliché et générique.";
+                responseBadge.className = "text-xs bg-red-100 text-red-800 px-2 py-1 rounded font-bold border border-red-200 inline-block mt-4";
+                
             } else {
                 // Buttons
-                btnWeak.className = "px-4 py-2 rounded-md text-sm transition-all font-medium text-slate-400 hover:text-white hover:bg-slate-800";
-                btnStrong.className = "px-4 py-2 rounded-md text-sm transition-all font-medium bg-green-500 text-white shadow-md";
-
+                btnWeak.className = "px-4 py-2 rounded-md text-sm transition-all font-medium text-slate-500 hover:text-slate-900 hover:bg-slate-200";
+                btnStrong.className = "px-4 py-2 rounded-md text-sm transition-all font-medium bg-green-600 text-white shadow-md";
+                
                 // Content
                 promptText.textContent = "Analyse ma séance sous l'angle de la récupération musculaire et de la nutrition.";
-                promptAnalysis.textContent = 'Active un "cadre" précis. Lampe de poche focalisée.';
+                promptExp.textContent = 'Active un "cadre" précis. Lampe de poche focalisée.';
                 
-                // Response Style
-                responseContainer.className = "p-5 rounded-lg border-l-4 transition-all duration-500 shadow-md bg-green-50 text-green-900 border-green-500";
+                // Response Box Style
+                responseBox.className = "p-5 rounded-lg border-l-4 transition-all duration-500 shadow-sm bg-green-50 text-green-900 border-green-500";
                 responseDot.className = "w-2 h-2 rounded-full bg-green-500";
                 
-                // Response Text
-                responseContent.innerHTML = '<p class="text-sm text-base leading-relaxed">"D\'après tes données, ta phase catabolique est trop longue. Pour optimiser la resynthèse du glycogène, augmente tes apports en..." <br/><br/><span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded font-bold border border-green-200">Observation: Analytique et utile.</span></p>';
+                // Response Content
+                responseText.textContent = '"D\'après tes données, ta phase catabolique est trop longue. Pour optimiser la resynthèse du glycogène, augmente tes apports en..."';
+                responseBadge.textContent = "Observation: Analytique et utile.";
+                responseBadge.className = "text-xs bg-green-100 text-green-800 px-2 py-1 rounded font-bold border border-green-200 inline-block mt-4";
             }
         }
-
-        btnWeak.addEventListener('click', () => setPromptMode('weak'));
-        btnStrong.addEventListener('click', () => setPromptMode('strong'));
-
     </script>
 </body>
 </html>
