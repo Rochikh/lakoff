@@ -1,423 +1,363 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>L'IA avec esprit critique</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
-        
-        .header {
-            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-            color: white;
-            padding: 40px;
-            text-align: center;
-        }
-        
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-        
-        .subtitle {
-            font-size: 1.2em;
-            opacity: 0.95;
-            font-weight: 300;
-        }
-        
-        .central-concept {
-            background: #f8f9fa;
-            padding: 40px;
-            text-align: center;
-            border-bottom: 3px solid #e9ecef;
-        }
-        
-        .loop {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            margin: 30px 0;
-            flex-wrap: wrap;
-        }
-        
-        .loop-item {
-            background: white;
-            padding: 20px 30px;
-            border-radius: 50px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            font-weight: 600;
-            color: #2c3e50;
-            position: relative;
-            transition: transform 0.3s;
-        }
-        
-        .loop-item:hover {
-            transform: translateY(-5px);
-        }
-        
-        .arrow {
-            color: #667eea;
-            font-size: 1.5em;
-            font-weight: bold;
-        }
-        
-        .key-message {
-            background: #667eea;
-            color: white;
-            padding: 15px 30px;
-            border-radius: 50px;
-            display: inline-block;
-            margin-top: 20px;
-            font-size: 1.1em;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-        }
-        
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 0;
-        }
-        
-        .section {
-            padding: 40px;
-            position: relative;
-        }
-        
-        .section h2 {
-            font-size: 1.5em;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5em;
-        }
-        
-        .danger {
-            background: #fff5f5;
-            border-left: 4px solid #e74c3c;
-        }
-        
-        .danger .icon {
-            background: #e74c3c;
-            color: white;
-        }
-        
-        .success {
-            background: #f0fdf4;
-            border-left: 4px solid #27ae60;
-        }
-        
-        .success .icon {
-            background: #27ae60;
-            color: white;
-        }
-        
-        .info {
-            background: #f0f9ff;
-            border-left: 4px solid #3498db;
-        }
-        
-        .info .icon {
-            background: #3498db;
-            color: white;
-        }
-        
-        .warning {
-            background: #fffbeb;
-            border-left: 4px solid #f39c12;
-        }
-        
-        .warning .icon {
-            background: #f39c12;
-            color: white;
-        }
-        
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-        
-        li {
-            padding: 12px 0;
-            padding-left: 35px;
-            position: relative;
-            line-height: 1.6;
-        }
-        
-        li:before {
-            content: '';
-            position: absolute;
-            left: 10px;
-            top: 20px;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: currentColor;
-            opacity: 0.5;
-        }
-        
-        .example {
-            background: white;
-            border-radius: 10px;
-            padding: 15px;
-            margin-top: 15px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        .example-label {
-            font-weight: 600;
-            color: #667eea;
-            font-size: 0.9em;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .example-text {
-            font-family: 'Courier New', monospace;
-            background: #f8f9fa;
-            padding: 10px;
-            border-radius: 5px;
-            border-left: 3px solid #667eea;
-        }
-        
-        .footer {
-            background: #2c3e50;
-            color: white;
-            padding: 30px;
-            text-align: center;
-        }
-        
-        .principle {
-            background: rgba(255,255,255,0.1);
-            padding: 20px;
-            border-radius: 10px;
-            font-size: 1.1em;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-        
-        .signature {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.2);
-            font-size: 0.95em;
-        }
-        
-        .cc-license {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255,255,255,0.1);
-            padding: 8px 15px;
-            border-radius: 20px;
-        }
-        
-        .cc-license svg {
-            height: 20px;
-            width: auto;
-            fill: white;
-        }
-        
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 1.8em;
-            }
-            
-            .loop {
-                flex-direction: column;
-            }
-            
-            .arrow {
-                transform: rotate(90deg);
-            }
-            
-            .signature {
-                flex-direction: column;
-                gap: 10px;
-            }
-        }
-        
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-            }
-            50% {
-                box-shadow: 0 4px 25px rgba(102, 126, 234, 0.5);
-            }
-            100% {
-                box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>🧠 Utiliser l'IA avec Esprit Critique</h1>
-            <div class="subtitle">Comment transformer ChatGPT en véritable outil de réflexion</div>
-        </div>
-        
-        <div class="central-concept">
-            <h2 style="color: #2c3e50; margin-bottom: 10px;">💡 Le concept clé à comprendre</h2>
-            <p style="font-size: 1.1em; color: #555; margin-bottom: 20px;">
-                L'IA ne "pense" pas, elle prédit le mot suivant le plus probable selon ta question
-            </p>
-            
-            <div class="loop">
-                <div class="loop-item">Ta Question</div>
-                <div class="arrow">→</div>
-                <div class="loop-item">Contexte créé</div>
-                <div class="arrow">→</div>
-                <div class="loop-item">Réponse prédite</div>
-                <div class="arrow">→</div>
-                <div class="loop-item">Ta Question</div>
-            </div>
-            
-            <div class="key-message pulse">
-                ⚡ Tu es co-auteur·ice de chaque réponse de l'IA
-            </div>
-        </div>
-        
-        <div class="grid">
-            <div class="section danger">
-                <h2>
-                    <span class="icon">⚠️</span>
-                    Les pièges à éviter
-                </h2>
-                <ul>
-                    <li><strong>L'effet miroir :</strong> L'IA copie ton style et confirme tes idées</li>
-                    <li><strong>La complaisance :</strong> Elle cherche à te satisfaire plutôt qu'à être exacte</li>
-                    <li><strong>La bulle :</strong> Tu dialogues avec tes propres idées reformulées</li>
-                </ul>
-                
-                <div class="example">
-                    <div class="example-label">Piège typique</div>
-                    <div class="example-text">
-                        ❌ "J'ai raison de penser que X est vrai, non ?"<br>
-                        → L'IA va probablement confirmer
-                    </div>
-                </div>
-            </div>
-            
-            <div class="section success">
-                <h2>
-                    <span class="icon">✨</span>
-                    Techniques pour mieux réfléchir
-                </h2>
-                <ul>
-                    <li><strong>Demander plusieurs angles :</strong> "Donne-moi 3 façons différentes de voir ce problème"</li>
-                    <li><strong>Chercher les failles :</strong> "Où mon raisonnement pourrait être trop simple ?"</li>
-                    <li><strong>Inverser les rôles :</strong> "Quelles questions devrais-je me poser sur ce sujet ?"</li>
-                </ul>
-                
-                <div class="example">
-                    <div class="example-label">Bonne pratique</div>
-                    <div class="example-text">
-                        ✅ "Argumente CONTRE cette idée : [ton idée]"<br>
-                        → Force l'IA à te challenger
-                    </div>
-                </div>
-            </div>
-            
-            <div class="section info">
-                <h2>
-                    <span class="icon">🎯</span>
-                    Comment formuler tes demandes
-                </h2>
-                <ul>
-                    <li><strong>Sois précis·e :</strong> Chaque mot oriente la réponse</li>
-                    <li><strong>Impose des contraintes :</strong> "Explique comme à un·e enfant" ou "En 3 points maximum"</li>
-                    <li><strong>Varie les approches :</strong> Reformule différemment pour explorer</li>
-                </ul>
-                
-                <div class="example">
-                    <div class="example-label">Transformation utile</div>
-                    <div class="example-text">
-                        Au lieu de : "C'est quoi le marketing ?"<br>
-                        Essaie : "Compare 3 définitions contradictoires du marketing"
-                    </div>
-                </div>
-            </div>
-            
-            <div class="section warning">
-                <h2>
-                    <span class="icon">🔄</span>
-                    Créer de la friction cognitive
-                </h2>
-                <ul>
-                    <li><strong>Force la contradiction :</strong> Demande toujours un contre-argument</li>
-                    <li><strong>Multiplie les perspectives :</strong> "Comment un·e économiste, un·e philosophe et un·e ingénieur·e verraient ce problème ?"</li>
-                    <li><strong>Teste la robustesse :</strong> "Quelle est la plus grosse faiblesse de cette approche ?"</li>
-                </ul>
-                
-                <div class="example">
-                    <div class="example-label">Question puissante</div>
-                    <div class="example-text">
-                        💪 "Si tu devais me convaincre du contraire, quels seraient tes 3 meilleurs arguments ?"
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="footer">
-            <div class="principle">
-                <strong>🎓 Principe fondamental :</strong><br>
-                La qualité de la réponse ne dépend pas de l'intelligence de l'IA,<br>
-                mais de ta capacité à structurer des questions qui génèrent de la réflexion critique.
-            </div>
-            
-            <div class="signature">
-                <span><strong>Rochane Kherbouche</strong></span>
-                <div class="cc-license">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-                        <circle cx="32" cy="32" r="30" fill="none" stroke="white" stroke-width="4"/>
-                        <path d="M32 15c-9.4 0-17 7.6-17 17s7.6 17 17 17c4.5 0 8.6-1.7 11.7-4.6l-4.2-3.7c-2.1 1.8-4.7 2.8-7.5 2.8-6.4 0-11.5-5.2-11.5-11.5S25.6 20.5 32 20.5c2.8 0 5.4 1 7.5 2.8l4.2-3.7C40.6 16.7 36.5 15 32 15z"/>
-                        <path d="M41 27c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4zm0 5.5c-0.8 0-1.5-0.7-1.5-1.5s0.7-1.5 1.5-1.5 1.5 0.7 1.5 1.5-0.7 1.5-1.5 1.5z"/>
-                    </svg>
-                    <span>CC BY-SA</span>
-                </div>
-            </div>
-        </div>
+import React, { useState } from 'react';
+import { Camera, Search, Database, Zap, ArrowRight, Brain, Bike, Sparkles, AlertCircle, ShoppingCart, Blend, Microscope, ExternalLink } from 'lucide-react';
+
+// Composant pour les cartes simples
+const InfoCard = ({ icon: Icon, title, children, color = "blue" }) => (
+  <div className={`bg-white p-6 rounded-xl shadow-lg border-l-4 border-${color}-500 mb-6 hover:shadow-xl transition-shadow duration-300`}>
+    <div className="flex items-center mb-4">
+      <div className={`p-3 rounded-full bg-${color}-100 mr-4`}>
+        <Icon className={`w-6 h-6 text-${color}-600`} />
+      </div>
+      <h3 className="text-xl font-bold text-gray-800">{title}</h3>
     </div>
-</body>
-</html>
+    <div className="text-gray-600 leading-relaxed">
+      {children}
+    </div>
+  </div>
+);
+
+// --- SECTION 1: LE CADRE COGNITIF (FRAME) ---
+const BikeFrameDemo = () => {
+  const [frame, setFrame] = useState('occasion'); // 'occasion' or 'vintage'
+
+  return (
+    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200">
+      <h4 className="text-lg font-bold mb-4 text-center text-slate-800">Expérience 1 : Le Filtre Photo (Frame)</h4>
+      <p className="text-center text-sm text-slate-600 mb-6">Choisis un mot pour vendre ce vélo et observe comment ton cerveau réagit.</p>
+      
+      <div className="flex justify-center space-x-4 mb-8">
+        <button 
+          onClick={() => setFrame('occasion')}
+          className={`px-4 py-2 rounded-full font-medium transition-all ${frame === 'occasion' ? 'bg-slate-700 text-white shadow-lg scale-105' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`}
+        >
+          Mot : "D'occasion"
+        </button>
+        <button 
+          onClick={() => setFrame('vintage')}
+          className={`px-4 py-2 rounded-full font-medium transition-all ${frame === 'vintage' ? 'bg-purple-600 text-white shadow-lg scale-105' : 'bg-purple-100 text-purple-600 hover:bg-purple-200'}`}
+        >
+          Mot : "Vintage"
+        </button>
+      </div>
+
+      <div className="flex flex-col md:flex-row items-center justify-center gap-8">
+        {/* L'image mentale */}
+        <div className={`relative w-48 h-48 rounded-full flex items-center justify-center transition-all duration-500 ${frame === 'occasion' ? 'bg-gray-200' : 'bg-purple-100'}`}>
+           <Bike size={80} className={`transition-all duration-500 ${frame === 'occasion' ? 'text-gray-500' : 'text-purple-600'}`} />
+           {frame === 'vintage' && <Sparkles className="absolute top-4 right-8 text-yellow-400 animate-pulse" />}
+        </div>
+
+        {/* L'interprétation */}
+        <div className="w-full md:w-1/2 space-y-3">
+          <div className="p-4 bg-white rounded-lg shadow-sm border border-slate-100">
+            <span className="text-xs font-bold text-slate-400 uppercase">Ce que le cerveau imagine :</span>
+            <p className="text-lg font-medium text-slate-800">
+              {frame === 'occasion' ? "Un vieux vélo usé, un peu rouillé..." : "Un vélo de collection, stylé et rare !"}
+            </p>
+          </div>
+          <div className="p-4 bg-white rounded-lg shadow-sm border border-slate-100">
+            <span className="text-xs font-bold text-slate-400 uppercase">Valeur perçue :</span>
+            <p className={`text-xl font-bold ${frame === 'occasion' ? 'text-slate-600' : 'text-green-600'}`}>
+              {frame === 'occasion' ? "Environ 30 €" : "Environ 150 €"}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// --- SECTION 2: MÉCANIQUE LLM ---
+const EmbeddingsMap = () => (
+  <div className="relative h-64 bg-slate-900 rounded-xl overflow-hidden mb-4 border border-slate-700 shadow-inner">
+    <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900 via-slate-900 to-black"></div>
+    <div className="absolute top-4 left-4 text-xs text-white bg-blue-600/80 px-3 py-1 rounded-full font-bold shadow-sm">Le "Supermarché" (Espace Latent)</div>
+    
+    {/* Cluster Nourriture */}
+    <div className="absolute top-10 left-10 group cursor-pointer">
+      <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse shadow-[0_0_10px_rgba(74,222,128,0.5)]"></div>
+      <span className="text-xs text-green-100 font-medium ml-2 group-hover:text-white transition-colors bg-black/40 px-1 rounded">Pomme</span>
+    </div>
+    <div className="absolute top-16 left-20 group cursor-pointer">
+      <div className="w-2 h-2 bg-green-500 rounded-full shadow-[0_0_8px_rgba(34,197,94,0.5)]"></div>
+      <span className="text-xs text-green-200 font-medium ml-2 group-hover:text-white transition-colors bg-black/40 px-1 rounded">Tarte</span>
+    </div>
+
+    {/* Cluster Animaux */}
+    <div className="absolute bottom-10 right-10 group cursor-pointer">
+      <div className="w-3 h-3 bg-orange-400 rounded-full animate-pulse shadow-[0_0_10px_rgba(251,146,60,0.5)]"></div>
+      <span className="text-xs text-orange-100 font-medium ml-2 group-hover:text-white transition-colors bg-black/40 px-1 rounded">Chat</span>
+    </div>
+    <div className="absolute bottom-20 right-24 group cursor-pointer">
+      <div className="w-2 h-2 bg-orange-500 rounded-full shadow-[0_0_8px_rgba(249,115,22,0.5)]"></div>
+      <span className="text-xs text-orange-200 font-medium ml-2 group-hover:text-white transition-colors bg-black/40 px-1 rounded">Chien</span>
+    </div>
+
+    {/* Cluster Royauté */}
+    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 group cursor-pointer">
+      <div className="w-3 h-3 bg-purple-400 rounded-full animate-pulse shadow-[0_0_10px_rgba(192,132,252,0.5)]"></div>
+      <span className="text-xs text-purple-100 font-medium ml-2 group-hover:text-white transition-colors bg-black/40 px-1 rounded">Roi</span>
+    </div>
+    <div className="absolute top-1/2 left-1/2 transform translate-x-4 -translate-y-8 group cursor-pointer">
+      <div className="w-2 h-2 bg-purple-500 rounded-full shadow-[0_0_8px_rgba(168,85,247,0.5)]"></div>
+      <span className="text-xs text-purple-200 font-medium ml-2 group-hover:text-white transition-colors bg-black/40 px-1 rounded">Reine</span>
+    </div>
+  </div>
+);
+
+const AttentionMechanism = () => {
+  const [hoveredWord, setHoveredWord] = useState(null);
+
+  const words = [
+    { id: 1, text: "L'", type: "neutral" },
+    { id: 2, text: "avocat", type: "trigger", connections: [5, 7] },
+    { id: 3, text: "a", type: "neutral" },
+    { id: 4, text: "brillamment", type: "neutral" },
+    { id: 5, text: "plaidé", type: "target", score: "90%" },
+    { id: 6, text: "pour", type: "neutral" },
+    { id: 7, text: "son", type: "neutral" },
+    { id: 8, text: "client", type: "target", score: "85%" },
+    { id: 9, text: ".", type: "neutral" }
+  ];
+
+  return (
+    <div className="bg-indigo-50 p-6 rounded-xl border border-indigo-200">
+      <h4 className="text-lg font-bold mb-2 text-center text-indigo-900">Le Mécanisme d'Attention (Les Détectives)</h4>
+      <p className="text-center text-sm text-indigo-700 mb-6 font-medium">Passe ta souris sur le mot <strong>"avocat"</strong> pour voir comment l'IA comprend son sens grâce au contexte.</p>
+      
+      <div className="flex flex-wrap justify-center gap-3 text-xl md:text-2xl font-serif">
+        {words.map((word) => {
+          const isTrigger = word.text === "avocat";
+          const isConnected = hoveredWord === "avocat" && word.connections?.includes(word.id) === false && (word.id === 5 || word.id === 8);
+          
+          return (
+            <div 
+              key={word.id}
+              onMouseEnter={() => isTrigger && setHoveredWord("avocat")}
+              onMouseLeave={() => setHoveredWord(null)}
+              className={`
+                relative px-3 py-1.5 rounded transition-all duration-300 cursor-default shadow-sm border
+                ${isTrigger 
+                  ? 'bg-yellow-300 text-yellow-900 border-yellow-400 cursor-pointer font-bold ring-2 ring-yellow-500 shadow-md transform scale-105' 
+                  : 'bg-white text-slate-700 border-slate-200'}
+                ${isConnected 
+                  ? 'bg-indigo-600 text-white border-indigo-700 font-bold scale-110 shadow-lg z-10' 
+                  : ''}
+              `}
+            >
+              {word.text}
+              {isConnected && (
+                <span className="absolute -top-8 left-1/2 transform -translate-x-1/2 text-xs bg-indigo-800 text-white px-3 py-1 rounded-full whitespace-nowrap shadow-md border border-indigo-400">
+                  Indice trouvé !
+                </span>
+              )}
+            </div>
+          );
+        })}
+      </div>
+      
+      <div className="mt-6 text-center h-12 flex items-center justify-center">
+        {hoveredWord === "avocat" ? (
+          <div className="bg-white px-6 py-2 rounded-full shadow-md border border-indigo-100 animate-fade-in">
+             <p className="text-indigo-800 font-bold flex items-center gap-2">
+               <span className="text-2xl">👨‍⚖️</span> L'IA détecte "plaidé" et "client" ➔ C'est un juriste, pas un fruit !
+             </p>
+          </div>
+        ) : (
+          <p className="text-indigo-400 text-sm italic">Survole le mot en jaune pour activer l'attention...</p>
+        )}
+      </div>
+    </div>
+  );
+};
+
+// --- SECTION 3: PROMPTING ---
+const PromptSimulator = () => {
+  const [mode, setMode] = useState('weak');
+
+  return (
+    <div className="bg-slate-800 text-white p-6 rounded-xl shadow-2xl border border-slate-700">
+      <div className="flex flex-col sm:flex-row items-center justify-between mb-6 gap-4">
+        <h4 className="text-xl font-bold flex items-center gap-2 text-white">
+          <Zap className="text-yellow-400 fill-yellow-400" /> Simulateur de Prompt
+        </h4>
+        <div className="flex bg-slate-900 rounded-lg p-1 border border-slate-600">
+          <button 
+            onClick={() => setMode('weak')}
+            className={`px-4 py-2 rounded-md text-sm transition-all font-medium ${mode === 'weak' ? 'bg-red-500 text-white shadow-md' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
+          >
+            Faible
+          </button>
+          <button 
+            onClick={() => setMode('strong')}
+            className={`px-4 py-2 rounded-md text-sm transition-all font-medium ${mode === 'strong' ? 'bg-green-500 text-white shadow-md' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
+          >
+            Fort (Cadré)
+          </button>
+        </div>
+      </div>
+
+      <div className="grid md:grid-cols-2 gap-6">
+        <div className="space-y-4">
+          <div className="bg-slate-900 p-5 rounded-lg border border-slate-600 shadow-inner">
+            <span className="text-xs uppercase tracking-wider text-slate-400 font-bold mb-2 block flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-blue-500"></span> Ton Prompt (La commande)
+            </span>
+            <p className="font-mono text-lg text-blue-100">
+              {mode === 'weak' 
+                ? 'Agis comme un coach sportif.' 
+                : 'Analyse ma séance sous l\'angle de la récupération musculaire et de la nutrition.'}
+            </p>
+          </div>
+          
+          <div className="flex items-center gap-3 text-sm text-slate-300 bg-slate-700/50 p-3 rounded-lg border border-slate-600/50">
+             <ArrowRight size={16} className="text-slate-400" />
+             {mode === 'weak' 
+               ? <span>Active un "rôle" flou. Lampe de poche trop large.</span> 
+               : <span>Active un "cadre" précis. Lampe de poche focalisée.</span>}
+          </div>
+        </div>
+
+        <div className={`p-5 rounded-lg border-l-4 transition-all duration-500 shadow-md ${mode === 'weak' ? 'bg-slate-100 text-slate-800 border-red-500' : 'bg-green-50 text-green-900 border-green-500'}`}>
+          <span className="text-xs uppercase tracking-wider font-bold mb-3 block opacity-70 flex items-center gap-2">
+             <span className={`w-2 h-2 rounded-full ${mode === 'weak' ? 'bg-red-500' : 'bg-green-500'}`}></span> Réponse de l'IA
+          </span>
+          {mode === 'weak' ? (
+            <p className="italic text-lg">"Allez champion ! On lâche rien ! Fais 10 pompes ! Le sport c'est la santé !" <br/><br/><span className="text-xs bg-red-100 text-red-700 px-2 py-1 rounded font-bold border border-red-200">Observation: Cliché et générique.</span></p>
+          ) : (
+            <p className="text-sm text-base leading-relaxed">"D'après tes données, ta phase catabolique est trop longue. Pour optimiser la resynthèse du glycogène, augmente tes apports en..." <br/><br/><span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded font-bold border border-green-200">Observation: Analytique et utile.</span></p>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// --- APPLICATION PRINCIPALE ---
+
+const App = () => {
+  return (
+    <div className="min-h-screen bg-slate-100 font-sans text-slate-900">
+      
+      {/* HEADER */}
+      <header className="bg-blue-600 text-white pt-12 pb-24 px-4 text-center relative overflow-hidden shadow-lg">
+        <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+          <div className="absolute top-10 left-10 transform rotate-12"><Brain size={120} /></div>
+          <div className="absolute bottom-10 right-10 transform -rotate-12"><Database size={120} /></div>
+        </div>
+        <div className="relative z-10 max-w-4xl mx-auto">
+          <h1 className="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight drop-shadow-sm text-white">Comment parler à une IA ?</h1>
+          <p className="text-xl md:text-2xl text-blue-50 max-w-3xl mx-auto font-light leading-relaxed">
+            Comprendre les <strong className="font-bold text-white">cadres cognitifs</strong> et les <strong className="font-bold text-white">machines à prédire</strong>.
+            <br/>
+            <span className="text-base mt-4 block opacity-90 font-normal bg-blue-700/30 inline-block px-4 py-2 rounded-full border border-blue-400/30">
+              (Expliqué simplement avec des vélos et des smoothies)
+            </span>
+          </p>
+        </div>
+      </header>
+
+      <main className="max-w-4xl mx-auto px-4 -mt-16 pb-20 relative z-20 space-y-12">
+
+        {/* SECTION 1: LE CERVEAU HUMAIN */}
+        <section>
+          <div className="flex items-center gap-3 mb-6 pl-2">
+            <div className="bg-purple-600 text-white p-2 rounded-lg shadow-md"><Camera size={24} /></div>
+            <h2 className="text-2xl font-bold text-slate-800">1. Le Cerveau Humain & les "Filtres"</h2>
+          </div>
+          
+          <InfoCard icon={Camera} title="Le Cadre Cognitif (Frame)" color="purple">
+            Imagine que ton cerveau est un appareil photo avec des <strong>filtres automatiques</strong>. Avant même de réfléchir, le mot que tu entends choisit le filtre. C'est magique : le même objet change de valeur selon le mot utilisé.
+          </InfoCard>
+
+          <BikeFrameDemo />
+        </section>
+
+        {/* SECTION 2: LE CERVEAU MACHINE */}
+        <section>
+          <div className="flex items-center gap-3 mb-6 pl-2">
+            <div className="bg-blue-600 text-white p-2 rounded-lg shadow-md"><Database size={24} /></div>
+            <h2 className="text-2xl font-bold text-slate-800">2. Comment pense la machine ?</h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <InfoCard icon={ShoppingCart} title="Le Supermarché (Embeddings)" color="blue">
+              L'IA ne connaît pas le sens des mots. Elle les range dans un immense supermarché (une carte mathématique). <br/><br/>
+              <strong>Concept clé :</strong> Les mots de sens proche ("Chat", "Chien") sont rangés dans le même rayon.
+              <div className="mt-4"><EmbeddingsMap /></div>
+            </InfoCard>
+
+            <InfoCard icon={Blend} title="Le Smoothie (Compression)" color="orange">
+              L'IA n'est pas une bibliothèque où l'on range des livres intacts. C'est un <strong>blender</strong>. <br/><br/>
+              On a mixé tout Internet. On ne peut plus retrouver la page exacte, mais on a le "goût" (la connaissance) de tout ce qui a été lu.
+              <div className="bg-orange-50 border border-orange-200 p-4 mt-4 rounded-lg flex items-center justify-center text-orange-800 font-bold shadow-sm">
+                <Blend className="mr-2" /> Internet ➔ Jus de savoir
+              </div>
+            </InfoCard>
+          </div>
+
+          <InfoCard icon={Search} title="Les Détectives (L'Attention)" color="indigo">
+            L'IA utilise des "détectives" pour comprendre le sens d'un mot selon ses voisins. C'est ce qu'on appelle le <strong>Mécanisme d'Attention</strong>.
+            <div className="mt-4">
+              <AttentionMechanism />
+            </div>
+          </InfoCard>
+        </section>
+
+        {/* SECTION 3: LE LIEN (PROMPTING) */}
+        <section>
+           <div className="flex items-center gap-3 mb-6 pl-2">
+            <div className="bg-green-600 text-white p-2 rounded-lg shadow-md"><Zap size={24} /></div>
+            <h2 className="text-2xl font-bold text-slate-800">3. Piloter la machine</h2>
+          </div>
+
+          <InfoCard icon={Microscope} title="Le Prompt comme Gouvernail" color="green">
+            Puisque l'IA fonctionne par association (comme le supermarché), tes mots agissent comme une <strong>lampe de poche</strong> dans le noir. Si tu éclaires le mauvais rayon, l'IA sortira les mauvais mots.
+          </InfoCard>
+
+          <PromptSimulator />
+
+          <div className="mt-8 bg-yellow-50 border-l-4 border-yellow-400 p-5 rounded-r-lg flex gap-4 shadow-sm">
+            <AlertCircle className="text-yellow-600 flex-shrink-0 w-6 h-6" />
+            <div>
+              <h4 className="font-bold text-yellow-800 text-lg">Attention aux hallucinations !</h4>
+              <p className="text-yellow-800 mt-1 leading-relaxed">
+                L'IA est une machine à "rêver" la suite probable. Si tu lui demandes un smoothie au béton, elle inventera la recette pour te faire plaisir, car dans son supermarché, "recette" et "ingrédients" vont bien ensemble, même si c'est faux !
+              </p>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      {/* FOOTER */}
+      <footer className="bg-slate-800 text-slate-300 py-12 border-t border-slate-700 mt-12">
+        <div className="max-w-4xl mx-auto px-4 text-center space-y-6">
+          
+          <div className="flex flex-col items-center justify-center space-y-2">
+            <p className="font-semibold text-white text-lg">CC BY SA Rochane Kherbouche</p>
+            <p className="text-sm opacity-70">Infographie pédagogique interactive</p>
+          </div>
+
+          <div className="w-16 h-1 bg-slate-600 mx-auto rounded-full"></div>
+
+          <a 
+            href="https://media.licdn.com/dms/document/media/v2/D561FAQGEfmWXga2C0g/feedshare-document-pdf-analyzed/B56ZrDoF_eG4AY-/0/1764218661974?e=1765411200&v=beta&t=82rtMuAYtuik7F3UEGHbekmaCKkX3QwJYHJaHeauu1A" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-blue-300 hover:text-white transition-colors hover:underline"
+          >
+            <span>Inspiré de cette ressource</span>
+            <ExternalLink size={16} />
+          </a>
+          
+          <p className="text-xs text-slate-500 mt-8">
+            Basé sur les travaux de George Lakoff (Linguistique cognitive) et l'architecture Transformer.
+          </p>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default App;
